@@ -19,8 +19,8 @@ module LuckySneaks
           -online 4u 4-u acne adipex advicer baccarrat blackjack bllogspot booker buy byob carisoprodol
           casino chatroom cialis coolhu credit-card-debt cwas cyclen cyclobenzaprine
           day-trading debt-consolidation discreetordering duty-free dutyfree equityloans fioricet
-          freenet gambling- hair-loss homefinance holdem incest jrcreations levitra macinstruct mortgagequotes
-          online-gambling ottawavalleyag ownsthis paxil penis pharmacy phentermine
+          freenet gambling- hair-loss homefinance holdem incest jrcreations leethal levitra macinstruct
+          mortgagequotes online-gambling ottawavalleyag ownsthis paxil penis pharmacy phentermine
           poker poze pussy ringtones roulette shemale shoes -site slot-machine thorcarlson
           tramadol trim-spa ultram valeofglamorganconservatives viagra vioxx xanax zolus
         }
