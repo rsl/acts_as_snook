@@ -105,6 +105,21 @@ class Test::Unit::TestCase # :nodoc:
         [URL=http://www.nemogs.com/r/]They are having a huge sale right now, check out the site for all the info.[/URL]
         [URL=http://www.nemogs.com/r/]Everybody I know has got a couple bottles of this stuff, it simply works! Don't be the only one left behind![/URL]
         Product here - http://nemogs.com/r/index.php}  
+    },
+    {
+      :author => "Tweerasiaro",
+      :email => "iledygoro@yandex.ru",
+      :url => "http://www.nemogs.com",
+      :body => %q{Hey bro, nice talking to you the other day.
+        Thought you would want to check this out, I got some for myself cause they were on sale, you should check out the site, I added the link below.
+        Steel Package: 10 Patches reg $79.95 Now $49.95! Free shipping too!
+        Silver Package: 25 Patches reg $129.95, Now $99.95! Free shipping and free exercise manual included!
+        Gold Package: 40 Patches reg $189.95, Now $149.95! Free shipping and free exercise manual included!
+        Platinum Package: 65 Patches reg $259.95, Now $199.95! Free shipping and free exercise manual included! (Best Value!)
+        I know like 10 guys who have already stocked up on these.
+        [URL=http://www.nemogs.com]Here's the link to check out bro![/URL]
+        Talk to you soon!
+        Product here - http://www.nemogs.com}
     }
   ]
   

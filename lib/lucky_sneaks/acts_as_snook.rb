@@ -19,8 +19,8 @@ module LuckySneaks
           -online 4u 4-u acne adipex advicer baccarrat blackjack bllogspot booker buy byob carisoprodol
           casino chatroom cialis coolhu credit-card-debt cwas cyclen cyclobenzaprine
           day-trading debt-consolidation discreetordering duty-free dutyfree equityloans fioricet
-          freenet gambling- hair-loss homefinance holdem incest jrcreations leethal levitra macinstruct
-          mortgagequotes online-gambling ottawavalleyag ownsthis paxil penis pharmacy phentermine
+          freenet free\s*shipping gambling- hair-loss homefinance holdem incest jrcreations leethal levitra macinstruct
+          mortgagequotes nemogs online-gambling ottawavalleyag ownsthis paxil penis pharmacy phentermine
           poker poze pussy ringtones roulette shemale shoes -site slot-machine thorcarlson
           tramadol trim-spa ultram valeofglamorganconservatives viagra vioxx xanax zolus
         }
@@ -105,8 +105,11 @@ module LuckySneaks
     
     def calculate_snook_for_spam_words
       spam_words.each do |word|
-        deduct_snook_credits(1) if snook_body =~ /#{word}/i
-        deduct_snook_credits(1) if snook_url =~ /#{word}/i
+        regex = /#{word}/i
+        deduct_snook_credits(1) if snook_author =~ regex
+        deduct_snook_credits(1) if snook_email =~ regex
+        deduct_snook_credits(1) if snook_body =~ regex
+        deduct_snook_credits(1) if snook_url =~ regex
       end
     end
     

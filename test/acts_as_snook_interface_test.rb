@@ -3,10 +3,10 @@ require "test/test_helper"
 class ActsAsSnookInterfaceTest < Test::Unit::TestCase
   def test_marks_spam_as_spam
     SPAM_COMMENTS.each do |comment_attributes|
-      @comment = Comment.new(comment_attributes)
-      @comment.valid?
+      @comment = Comment.create(comment_attributes)
       assert_equal "spam", @comment.spam_status
     end
+    Comment.destroy_all
   end
   
   def test_marks_ham_as_ham
