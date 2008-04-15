@@ -81,6 +81,10 @@ module LuckySneaks
       snook_spam_status == "moderate"
     end
     
+    def ham!
+      update_attribute self.class.fields_for_snooking[:spam_status_field], "ham"
+    end
+    
   private
     def calculate_snook_for_body_links
       link_count = snook_body.scan(/http:/).size
