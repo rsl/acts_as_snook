@@ -42,6 +42,7 @@ module LuckySneaks
         before_validation :calculate_snook_score
         
         attr_reader :snook_credits
+        attr_protected fields_for_snooking[:spam_status_field]
       end
       
       # Returns all instances which have been marked as safe for display

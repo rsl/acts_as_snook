@@ -20,6 +20,12 @@ require File.join(File.dirname(__FILE__), '../init')
 require File.join(File.dirname(__FILE__), 'schema')
 require File.join(File.dirname(__FILE__), 'comment')
 
+# To shut up whining about writing to the nil logger
+class NilClass
+  def debug(*args)
+  end
+end
+
 class Test::Unit::TestCase # :nodoc:
   def link
     "<a href='http://lipsum.com/'>lorem ipsum</a>"

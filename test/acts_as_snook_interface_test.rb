@@ -63,4 +63,9 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     
     Comment.delete_all
   end
+  
+  def test_cannot_mass_assign_spam_status
+    @comment = bad_comment(:spam_status => "ham")
+    assert_not_equal "ham", @comment.spam_status
+  end
 end
