@@ -68,4 +68,11 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     @comment = bad_comment(:spam_status => "ham")
     assert_not_equal "ham", @comment.spam_status
   end
+  
+  def test_does_not_save_if_snook_credits_lower_than_negative_ten
+    @comment = Comment.new(SPAM_COMMENTS.first)
+    @comment.valid?
+    assert @comment.snook_credits < -10
+    assert !@comment.save
+  end
 end

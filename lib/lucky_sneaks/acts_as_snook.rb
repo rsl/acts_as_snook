@@ -175,6 +175,7 @@ module LuckySneaks
         "spam"
       end
       self.send("#{self.class.fields_for_snooking[:spam_status_field]}=", status)
+      snook_credits >= -10
     end
     
     def snook_author
