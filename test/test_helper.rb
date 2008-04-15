@@ -71,55 +71,26 @@ class Test::Unit::TestCase # :nodoc:
       :author => 'Charles Ford',
       :email => 'Joshua@internet.com',
       :url => 'http://www.av.com/',
-      :body => %q{Very informative site. Good job. thins that excited you at 14:<br>
-        <a target="_blank" class="ext" href="http://www.adobe.com" title="http://www.adobe.com">http://www.adobe.com</a> , <a href="http://www.yahoo.co.uk" rel="nofollow">thins<br>
-        that excited you at 14</a> , <a href="http://www.panasonic.com" rel="nofollow">black girls on their mission</a>
-      }
+      :body => %q{Very informative site. Good job. thins that excited you at 14:<br> <a target="_blank" class="ext" href="http://www.adobe.com" title="http://www.adobe.com">http://www.adobe.com</a> , <a href="http://www.yahoo.co.uk" rel="nofollow">thins<br> that excited you at 14</a> , <a href="http://www.panasonic.com" rel="nofollow">black girls on their mission</a>}
     },
     {
       :author => 'Welekneenia',
       :email => 'argenbrownou@yandex.ru',
       :url => 'http://replica-handbag.handbagreplicawatch.net/index.html',
-      :body => %q{[URL=http://swiss-replica.handbagreplicawatch.net/swiss-replica-AND-canal.html]swiss replica AND canal[/URL] [URL=http://swiss-replica.handbagreplicawatch.net/swiss-replica-watch.html]swiss replica watch[/URL] [URL=http://replica-gucci-bag.handbagreplicawatch.net/gucci-messenger-bag-replica.html]gucci messenger bag replica[/URL]  
-        Swiss Replica Rolex is made of the highest quality materials.  
-        [URL=http://prada-replica-handbag.handbagreplicawatch.net/replica-prada-mens.html]replica prada mens[/URL] [URL=http://prada-replica-handbag.handbagreplicawatch.net/prada-replica-sport.html]prada replica sport[/URL]  
-        The fact is that only a few people are able to afford it.  
-        [URL=http://prada-replica-handbag.handbagreplicawatch.net/replica-prada-bags.html]replica prada bags[/URL] [URL=http://replica-oakley.handbagreplicawatch.net/replica-oakley-watch.html]replica oakley watch[/URL]  
-        They also specialize on luxury necklaces and bag replicas.  
-        [URL=http://tiffany-replica.handbagreplicawatch.net/replica-tiffany-and-co.html]replica tiffany and co[/URL] [URL=http://panerai-replica.handbagreplicawatch.net/panerai-radiomir-replica.html]panerai radiomir replica[/URL]  
-        All purchased in the last six months or so.  
-        [URL=http://replica-watch.handbagreplicawatch.net/chopard-replica-watch.html]chopard replica watch[/URL] [URL=http://replica-watch.handbagreplicawatch.net/buy-a-replica-watch.html]buy a replica watch[/URL] [URL=http://replica-bag.handbagreplicawatch.net/fendi-spy-bag-replica.html]fendi spy bag replica[/URL]  
-        The styling of the watches is the same as the originals.  
-        [URL=http://replica-bag.handbagreplicawatch.net/bag-diaper-kate-replica-spade.html]bag diaper kate replica spade[/URL] [URL=http://replica-watch.handbagreplicawatch.net/replica-citizen-watch.html]replica citizen watch[/URL]}
+      :body => %q{[URL=http://swiss-replica.handbagreplicawatch.net/swiss-replica-AND-canal.html]swiss replica AND canal[/URL] [URL=http://swiss-replica.handbagreplicawatch.net/swiss-replica-watch.html]swiss replica watch[/URL] [URL=http://replica-gucci-bag.handbagreplicawatch.net/gucci-messenger-bag-replica.html]gucci messenger bag replica[/URL] Swiss Replica Rolex is made of the highest quality materials. [URL=http://prada-replica-handbag.handbagreplicawatch.net/replica-prada-mens.html]replica prada mens[/URL] [URL=http://prada-replica-handbag.handbagreplicawatch.net/prada-replica-sport.html]prada replica sport[/URL] The fact is that only a few people are able to afford it. [URL=http://prada-replica-handbag.handbagreplicawatch.net/replica-prada-bags.html]replica prada bags[/URL] [URL=http://replica-oakley.handbagreplicawatch.net/replica-oakley-watch.html]replica oakley watch[/URL] They also specialize on luxury necklaces and bag replicas. [URL=http://tiffany-replica.handbagreplicawatch.net/replica-tiffany-and-co.html]replica tiffany and co[/URL] [URL=http://panerai-replica.handbagreplicawatch.net/panerai-radiomir-replica.html]panerai radiomir replica[/URL] All purchased in the last six months or so. [URL=http://replica-watch.handbagreplicawatch.net/chopard-replica-watch.html]chopard replica watch[/URL] [URL=http://replica-watch.handbagreplicawatch.net/buy-a-replica-watch.html]buy a replica watch[/URL] [URL=http://replica-bag.handbagreplicawatch.net/fendi-spy-bag-replica.html]fendi spy bag replica[/URL] The styling of the watches is the same as the originals. [URL=http://replica-bag.handbagreplicawatch.net/bag-diaper-kate-replica-spade.html]bag diaper kate replica spade[/URL] [URL=http://replica-watch.handbagreplicawatch.net/replica-citizen-watch.html]replica citizen watch[/URL]}
     },
     {
       :author => "Fearacreext",
       :email => "iledygoro@yandex.ua",
       :url => "http://www.nemogs.com/e/",
-      :body => %q{Hey sweetie, you wanna attract  chick at the club? Try Ultra Allure pheromones!
-        -Attract women of all ages
-        -Excite women before even talking to them
-        -Make women want to sleep with you immediately
-        -Millions of men are already using them!
-        -Proven to work!
-        [URL=http://www.nemogs.com/r/]They are having a huge sale right now, check out the site for all the info.[/URL]
-        [URL=http://www.nemogs.com/r/]Everybody I know has got a couple bottles of this stuff, it simply works! Don't be the only one left behind![/URL]
-        Product here - http://nemogs.com/r/index.php}  
+      :body => %q{Hey sweetie, you wanna attract  chick at the club? Try Ultra Allure pheromones! -Attract women of all ages -Excite women before even talking to them -Make women want to sleep with you immediately -Millions of men are already using them! -Proven to work! [URL=http://www.nemogs.com/r/]They are having a huge sale right now, check out the site for all the info.[/URL] [URL=http://www.nemogs.com/r/]Everybody I know has got a couple bottles of this stuff, it simply works! Don't be the only one left behind![/URL] Product here - http://nemogs.com/r/index.php}  
     },
     {
       :author => "Tweerasiaro",
       :email => "iledygoro@yandex.ru",
       :url => "http://www.nemogs.com",
-      :body => %q{Hey bro, nice talking to you the other day.
-        Thought you would want to check this out, I got some for myself cause they were on sale, you should check out the site, I added the link below.
-        Steel Package: 10 Patches reg $79.95 Now $49.95! Free shipping too!
-        Silver Package: 25 Patches reg $129.95, Now $99.95! Free shipping and free exercise manual included!
-        Gold Package: 40 Patches reg $189.95, Now $149.95! Free shipping and free exercise manual included!
-        Platinum Package: 65 Patches reg $259.95, Now $199.95! Free shipping and free exercise manual included! (Best Value!)
-        I know like 10 guys who have already stocked up on these.
-        [URL=http://www.nemogs.com]Here's the link to check out bro![/URL]
-        Talk to you soon!
-        Product here - http://www.nemogs.com}
+      :body => %q{Hey bro, nice talking to you the other day. Thought you would want to check this out, I got some for myself cause they were on sale, you should check out the site, I added the link below.
+        Steel Package: 10 Patches reg $79.95 Now $49.95! Free shipping too! Silver Package: 25 Patches reg $129.95, Now $99.95! Free shipping and free exercise manual included! Gold Package: 40 Patches reg $189.95, Now $149.95! Free shipping and free exercise manual included! Platinum Package: 65 Patches reg $259.95, Now $199.95! Free shipping and free exercise manual included! (Best Value!) I know like 10 guys who have already stocked up on these. [URL=http://www.nemogs.com]Here's the link to check out bro![/URL] Talk to you soon! Product here - http://www.nemogs.com}
     }
   ]
   
@@ -128,48 +99,25 @@ class Test::Unit::TestCase # :nodoc:
       :author => 'Dan Cedarholm',
       :email => '',
       :url => 'http://www.simplebits.com/',
-      :body => %q{Nicely said, Simon. I have a bit of a knee-jerk reaction to comments -- when I'm flooded I curse them, but like you, I feel the comments add far more value than my posts.
-      So I feel more optimistic after reading your thoughts on the state of things. Something that didn't register until now is that MT's variation on your excellent redirect solution completely hides the URL, killing the "signature" aspect of a comment. I'm thinking your /redirect/?http://www.site.com is a nicer solution -- it's certainly a good way of verifying a frequent poster.}
+      :body => %q{Nicely said, Simon. I have a bit of a knee-jerk reaction to comments -- when I'm flooded I curse them, but like you, I feel the comments add far more value than my posts. So I feel more optimistic after reading your thoughts on the state of things. Something that didn't register until now is that MT's variation on your excellent redirect solution completely hides the URL, killing the "signature" aspect of a comment. I'm thinking your /redirect/?http://www.site.com is a nicer solution -- it's certainly a good way of verifying a frequent poster.}
     },
     {
       :author => 'Voyagerfan5761',
       :email => '',
       :url => 'http://voyagerfan5761.blogspot.com/',
-      :body => %q{
-      I like this post. The algorithm you've put together here is quite intriguing, though I'm a bit worried about a couple of the filter rules.
-      For instance, my URL is more than 30 characters, simply because I'm using a subdomain at a free blog host. Does that necessarily mean I'm a spammer? No. I've been thinking about getting my own domain, but -- and this is where it gets interesting -- my ideal registered domain would be 7+3+1+14+1+3+1=30 characters exactly, including http:// and a trailing slash.
-      I suppose I should be thankful that you don't seem to be filtering out *.blogspot.com completely, as I've seen suggested elsewhere on the 'Net.
-      Regarding your filtering URLs containing .html, ?, or &, does that apply to the comment body or just the URL field? Some blog platforms and content sites (PC World for example) end their pages in .html, and/or use query strings to retrieve the correct page, so I'm just curious about that.}
+      :body => %q{I like this post. The algorithm you've put together here is quite intriguing, though I'm a bit worried about a couple of the filter rules. For instance, my URL is more than 30 characters, simply because I'm using a subdomain at a free blog host. Does that necessarily mean I'm a spammer? No. I've been thinking about getting my own domain, but -- and this is where it gets interesting -- my ideal registered domain would be 7+3+1+14+1+3+1=30 characters exactly, including http:// and a trailing slash. I suppose I should be thankful that you don't seem to be filtering out *.blogspot.com completely, as I've seen suggested elsewhere on the 'Net. Regarding your filtering URLs containing .html, ?, or &, does that apply to the comment body or just the URL field? Some blog platforms and content sites (PC World for example) end their pages in .html, and/or use query strings to retrieve the correct page, so I'm just curious about that.}
     },
     {
       :author => 'Paul Decowski',
       :email => '',
       :url => '',
-      :body => %q{
-          Polish? Never heard of a word with 5 consonants in a row! 
-      Wstrzyknąć — to inject.}
+      :body => %q{Polish? Never heard of a word with 5 consonants in a row! Wstrzyknąć — to inject.}
     },
     {
       :author => 'Jamis Buck',
       :email => '',
       :url => '',
-      :body => %q{@Steve, for #1, I did the following (more or less) with Capistrano’s gateway class, which runs in a thread but must allow other threads to begin connections through the gateway:
-      <pre></code>require 'thread'
-
-      @mutex = Mutex.new
-      Thread.new do
-        loop do
-          @mutex.synchronize { @gateway.process(0.1) }
-        end
-      end
-
-      @mutex.synchronize do
-        @gateway.forward.local(1234, "remote-host", 22)
-      end
-
-      c = Net::SSH.start("localhost", "user", :port => 1234)</code</pre>
-      In other words, run the event loop manually (by looping and calling Net::SSH::Connection::Session#process manually), and wrap the #process call in a mutex. Then, any time you need to access the session outside of a thread, employ the mutex again.
-      As for #2, which “require” is failing?}
+      :body => %q{@Steve, for #1, I did the following (more or less) with Capistrano’s gateway class, which runs in a thread but must allow other threads to begin connections through the gateway: <pre></code>require 'thread' @mutex = Mutex.new Thread.new do loop do @mutex.synchronize { @gateway.process(0.1) } end end @mutex.synchronize do @gateway.forward.local(1234, "remote-host", 22) end c = Net::SSH.start("localhost", "user", :port => 1234)</code</pre> In other words, run the event loop manually (by looping and calling Net::SSH::Connection::Session#process manually), and wrap the #process call in a mutex. Then, any time you need to access the session outside of a thread, employ the mutex again. As for #2, which “require” is failing?}
     }
   ]
 end
