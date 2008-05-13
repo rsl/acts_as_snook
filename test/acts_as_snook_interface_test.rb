@@ -68,4 +68,16 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     @comment = bad_comment(:spam_status => "ham")
     assert_not_equal "ham", @comment.spam_status
   end
+  
+  def test_resaving_comment_with_changed_status_does_not_mark_as_spam
+    @comment = bad_comment
+    @comment.save!
+    
+    @comment.update_attribute(:spam_status, "ham")
+    assert @comment.ham?
+    @comment.save
+    assert @comment.ham?
+    
+    @comment.destroy
+  end
 end

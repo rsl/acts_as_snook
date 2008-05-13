@@ -39,7 +39,7 @@ module LuckySneaks
           :spam_status_field  => :spam_status
         }.merge(options)
         
-        before_validation :calculate_snook_score
+        before_validation_on_create :calculate_snook_score
         
         attr_reader :snook_credits
         attr_protected fields_for_snooking[:spam_status_field]
