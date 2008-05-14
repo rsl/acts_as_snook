@@ -65,23 +65,31 @@ module LuckySneaks
     
     # Returns true if marked as spam, false otherwise
     def spam?
-      calculate_snook_score unless snook_credits
+      calculate_snook_score unless already_calculated_snook
       snook_spam_status == "spam"
     end
     
     # Returns true if marked as ham (safe to display), false if spam
     def ham?
-      calculate_snook_score unless snook_credits
+      calculate_snook_score unless already_calculated_snook
       snook_spam_status == "ham"
     end
     
     # Returns true if marked as spam, false otherwise
     def moderate?
-      calculate_snook_score unless snook_credits
+      calculate_snook_score unless already_calculated_snook
       snook_spam_status == "moderate"
     end
     
+    def ham!
+      update_attribute :spam_status, "ham"
+    end
+    
   private
+    def already_calculated_snook
+      self.send(self.class.fields_for_snooking[:spam_status_field]) || snook_credits
+    end
+    
     def calculate_snook_for_body_links
       link_count = snook_body.scan(/http:/).size
       if link_count > 2
@@ -175,6 +183,7 @@ module LuckySneaks
         "spam"
       end
       self.send("#{self.class.fields_for_snooking[:spam_status_field]}=", status)
+      snook_credits >= -10
     end
     
     def snook_author

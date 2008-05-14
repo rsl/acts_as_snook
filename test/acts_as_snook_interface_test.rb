@@ -3,10 +3,10 @@ require "test/test_helper"
 class ActsAsSnookInterfaceTest < Test::Unit::TestCase
   def test_marks_spam_as_spam
     SPAM_COMMENTS.each do |comment_attributes|
-      @comment = Comment.create(comment_attributes)
+      @comment = Comment.new(comment_attributes)
+      @comment.valid?
       assert_equal "spam", @comment.spam_status
     end
-    Comment.destroy_all
   end
   
   def test_marks_ham_as_ham
@@ -69,15 +69,27 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     assert_not_equal "ham", @comment.spam_status
   end
   
+  def test_does_not_save_if_snook_credits_lower_than_negative_ten
+    @comment = Comment.new(SPAM_COMMENTS.first)
+    @comment.valid?
+    assert @comment.snook_credits < -10
+    assert !@comment.save
+  end
+  
+  def test_ham_exclamation_point_updates_spam_status_to_ham
+    @comment = Comment.create!(SPAM_COMMENTS[2])
+    assert @comment.spam?
+    @comment.ham!
+    assert @comment.ham?
+    @comment.destroy
+  end
+  
   def test_resaving_comment_with_changed_status_does_not_mark_as_spam
     @comment = bad_comment
     @comment.save!
-    
     @comment.update_attribute(:spam_status, "ham")
     assert @comment.ham?
     @comment.save
-    assert @comment.ham?
-    
     @comment.destroy
   end
 end
