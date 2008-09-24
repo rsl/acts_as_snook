@@ -92,4 +92,66 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     @comment.save
     @comment.destroy
   end
+  
+  def test_saving_ham_comment_increments_ham_comment_count
+    assert_difference "Entry.find(:first).ham_comments_count", 1 do
+      @comment = Entry.find(:first).comments.create!(HAM_COMMENTS[0])
+    end
+    @comment.destroy
+  end
+  
+  def test_saving_spam_comment_does_not_increment_ham_comment_count
+    assert_no_difference "Entry.find(:first).ham_comments_count" do
+      @comment = Entry.find(:first).comments.create!(SPAM_COMMENTS[2])
+    end
+    @comment.destroy
+  end
+  
+  def test_ham_bang_increments_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(SPAM_COMMENTS[2])
+    assert_difference "Entry.find(:first).ham_comments_count", 1 do
+      @comment.ham!
+    end
+    @comment.destroy
+  end
+  
+  def test_spam_bang_decrements_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(HAM_COMMENTS[0])
+    assert_difference "Entry.find(:first).ham_comments_count", -1 do
+      @comment.spam!
+    end
+    @comment.destroy
+  end
+  
+  def test_updating_spam_status_to_ham_increments_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(SPAM_COMMENTS[2])
+    assert_difference "Entry.find(:first).ham_comments_count", 1 do
+      @comment.spam_status = "ham"
+      @comment.save!
+    end
+    @comment.destroy
+  end
+  
+  def test_updating_spam_status_to_spam_decrements_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(HAM_COMMENTS[0])
+    assert_difference "Entry.find(:first).ham_comments_count", -1 do
+      @comment.spam_status = "spam"
+      @comment.save!
+    end
+    @comment.destroy
+  end
+  
+  def test_destroying_ham_comment_decrements_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(HAM_COMMENTS[0])
+    assert_difference "Entry.find(:first).ham_comments_count", -1 do
+      @comment.destroy
+    end
+  end
+  
+  def test_destroying_spam_comment_does_not_decrement_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(SPAM_COMMENTS[2])
+    assert_no_difference "Entry.find(:first).ham_comments_count" do
+      @comment.destroy
+    end
+  end
 end

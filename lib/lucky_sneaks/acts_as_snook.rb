@@ -5,14 +5,23 @@ module LuckySneaks
     end
     
     module ClassMethods
-      # Sets up spam detection (via before_validation callback). Avaiable options are:
+      # Sets up spam detection (via <tt>before_validation</tt> callback). Available options are:
       #
-      #   +:author_field+:: Symbol or string specifying a new database field to use for the author attribute
-      #   +:email_field+:: Symbol or string specifying a new database field to use for the email attribute
-      #   +:url_field+:: Symbol or string specifying a new database field to use for the url attribute
-      #   +:body_field+:: Symbol or string specifying a new database field to use for the body attribute
-      #   +:author_field+:: Symbol or string specifying a new database field to use for the spam_status attribute
-      #   +:spam_words+:: Array of strings which will be added to the list of words which are considered spam markers
+      # * <tt>:author_field</tt> - Symbol or string specifying an alternate database field to use for the author attribute. Default: <tt>author</tt>
+      # * <tt>:email_field</tt> - Symbol or string specifying an alternate database field to use for the email attribute. Default: +email+
+      # * <tt>:url_field</tt> - Symbol or string specifying an alternate database field to use for the url attribute. Default: +url+
+      # * <tt>:body_field</tt> - Symbol or string specifying an alternate database field to use for the body attribute. Default: +body+
+      # * <tt>:spam_status_field</tt> - Symbol or string specifying an alternate database field to use for the spam_status attribute. Default: +spam_status+
+      # * <tt>:spam_words</tt> - Array of strings which will be added to the list of words which are considered spam markers
+      # 
+      # If the comment model has only a single <tt>belongs_to</tt> association, ActsAsSnook will maintain
+      # a counter cache of ham [non-spam] comments on the parent class as the <tt>ham_comments_count</tt>
+      # attribute. If the comment model has more than one <tt>belongs_to</tt> association, ActsAsSnook will
+      # not automatically create this functionality. You can add it manually by providing the following options
+      # on the <tt>acts_as_snook</tt> call:
+      # 
+      # * <tt>:comment_belongs_to</tt> - Symbol or string specifying the association that the comment has a <tt>:belongs_to</tt> relationship with.
+      # * <tt>:ham_comments_count_field</tt> - Symbol or string specifying an alternate database field to use for the ham_comments_count attribute. Default: +ham_comments_count+
       def acts_as_snook(options = {})
         cattr_accessor :spam_words
         self.spam_words = %w{
@@ -32,14 +41,25 @@ module LuckySneaks
         cattr_accessor :fields_for_snooking
         self.fields_for_snooking = {
           # Defaults
-          :author_field       => :author,
-          :email_field        => :email,
-          :url_field          => :url,
-          :body_field         => :body,
-          :spam_status_field  => :spam_status
+          :author_field             => :author,
+          :email_field              => :email,
+          :url_field                => :url,
+          :body_field               => :body,
+          :ham_comments_count_field => :ham_comments_count,
+          :spam_status_field        => :spam_status
         }.merge(options)
         
         before_validation_on_create :calculate_snook_score
+        
+        if fields_for_snooking[:comment_belongs_to].nil? && reflect_on_all_associations(:belongs_to).size == 1
+          fields_for_snooking[:comment_belongs_to] = reflect_on_all_associations(:belongs_to).first.name
+        end
+        
+        if fields_for_snooking[:comment_belongs_to]
+          after_create :increment_ham_comments_count
+          after_update :adjust_ham_comments_count
+          after_destroy :decrement_ham_comments_count
+        end
         
         attr_reader :snook_credits
         attr_protected fields_for_snooking[:spam_status_field]
@@ -50,7 +70,7 @@ module LuckySneaks
         find :all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "ham"})
       end
       
-      # Returns all instances which have been marked as being spam
+      # Returns all instances which have been marked as spam
       def spam(options = {})
         find :all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "spam"})
       end
@@ -83,6 +103,10 @@ module LuckySneaks
     
     def ham!
       update_attribute :spam_status, "ham"
+    end
+    
+    def spam!
+      update_attribute :spam_status, "spam"
     end
     
   private
@@ -231,6 +255,34 @@ module LuckySneaks
       conditions = ["#{body_field} = ?", body_value]
       
       self.class.count :all, :conditions => conditions
+    end
+    
+    def snook_entry
+      if self.class.fields_for_snooking[:comment_belongs_to]
+        @snook_entry ||= self.send(self.class.fields_for_snooking[:comment_belongs_to])
+      end
+    end
+    
+    def snook_spam_status_changed?
+      changes.has_key? self.class.fields_for_snooking[:spam_status_field].to_s
+    end
+    
+    def increment_ham_comments_count
+      if ham? && snook_entry
+        snook_entry.increment!(self.class.fields_for_snooking[:ham_comments_count_field])
+      end
+    end
+    
+    def adjust_ham_comments_count
+      if snook_spam_status_changed?
+        ham? ? increment_ham_comments_count : decrement_ham_comments_count
+      end
+    end
+    
+    def decrement_ham_comments_count
+      if ((frozen? && ham?) || (snook_spam_status_changed? && spam?)) && snook_entry
+        snook_entry.decrement!(self.class.fields_for_snooking[:ham_comments_count_field])
+      end
     end
   end
 end

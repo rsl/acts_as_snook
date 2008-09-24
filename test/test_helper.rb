@@ -19,6 +19,9 @@ ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => "acts_
 require File.join(File.dirname(__FILE__), '../init')
 require File.join(File.dirname(__FILE__), 'schema')
 require File.join(File.dirname(__FILE__), 'comment')
+require File.join(File.dirname(__FILE__), 'entry')
+
+Entry.create!(:title => "The Tale of Flight 815")
 
 # To shut up whining about writing to the nil logger
 class NilClass
