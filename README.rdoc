@@ -6,7 +6,7 @@ ActsAsSnook is a simple and elegant method of handling comment spam that doesn't
 
 ActsAsSnook assumes that you have the following fields on your comment model: <tt>author</tt> [string], <tt>email</tt> [string], <tt>url</tt> [string], <tt>body</tt> [text], and <tt>spam_status</tt> [string]. The name of these attributes can be changed as shown in the next section.
 
-ActsAsSnook can also be configured to maintain a counter cache of ham comments [ham being the opposite of spam] for you. You will need to specify the following options to enable this.
+ActsAsSnook can also be configured to maintain a counter cache of ham comments [ham being the opposite of spam] for you. If your comment model has only one <tt>belongs_to</tt> association, this functionality will be automatically added. If not, you can add it in by manually configuring the following options:
 
 * <tt>:comment_belongs_to</tt> - The name of the parent class that comments belong to.
 * <tt>:ham_comments_count_field</tt> - The name of the attribute on the parent class which maintains the counter cache.
@@ -33,6 +33,8 @@ ActsAsSnook also provides some helper methods for determining the spam status of
 <tt>Comment#ham</tt>:: Shortcut for <tt>Comment#find(:all, :conditions => {:spam_status => "ham"})</tt>
 <tt>Comment#spam</tt>:: Shortcut for <tt>Comment#find(:all, :conditions => {:spam_status => "spam"})</tt>
 <tt>Comment#moderate</tt>:: Shortcut for <tt>Comment#find(:all, :conditions => {:spam_status => "moderate"})</tt>
+
+If you have provided a <tt>ham_comments_count</tt> attribute on your comment's parent class (in this case, Entry) you also get <tt>Entry#ham_comments_count</tt>. See the documentation for the <tt>acts_as_snook</tt> method for more information on that.
 
 == Credits and Thanks
 
