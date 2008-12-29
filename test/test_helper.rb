@@ -129,4 +129,19 @@ class Test::Unit::TestCase # :nodoc:
       :body => %q{@Steve, for #1, I did the following (more or less) with Capistrano’s gateway class, which runs in a thread but must allow other threads to begin connections through the gateway: <pre></code>require 'thread' @mutex = Mutex.new Thread.new do loop do @mutex.synchronize { @gateway.process(0.1) } end end @mutex.synchronize do @gateway.forward.local(1234, "remote-host", 22) end c = Net::SSH.start("localhost", "user", :port => 1234)</code</pre> In other words, run the event loop manually (by looping and calling Net::SSH::Connection::Session#process manually), and wrap the #process call in a mutex. Then, any time you need to access the session outside of a thread, employ the mutex again. As for #2, which “require” is failing?}
     }
   ]
+  
+  # From Active Support
+  def assert_difference(expressions, difference = 1, message = nil, &block)
+    expression_evaluations = Array(expressions).collect{ |expression| lambda { eval(expression, block.send(:binding)) } }
+
+    original_values = expression_evaluations.inject([]) { |memo, expression| memo << expression.call }
+    yield
+    expression_evaluations.each_with_index do |expression, i|
+      assert_equal original_values[i] + difference, expression.call, message
+    end
+  end
+  
+  def assert_no_difference(expressions, message = nil, &block)
+    assert_difference expressions, 0, message, &block
+  end
 end
