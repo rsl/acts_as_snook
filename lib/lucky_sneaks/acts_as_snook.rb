@@ -102,11 +102,11 @@ module LuckySneaks
     end
     
     def ham!
-      update_attribute :spam_status, "ham"
+      update_attribute self.class.fields_for_snooking[:spam_status_field], "ham"
     end
     
     def spam!
-      update_attribute :spam_status, "spam"
+      update_attribute self.class.fields_for_snooking[:spam_status_field], "spam"
     end
     
   private
