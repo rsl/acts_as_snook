@@ -40,4 +40,7 @@ If you have provided a <tt>ham_comments_count</tt> attribute on your comment's p
 
 Much love to Jonathan Snook, web developer extraordinaire. Most of the ideas/algorithms of ActsAsSnook [as well as the name, obviously] come from his blog post which you can find here[http://snook.ca/archives/other/effective_blog_comment_spam_blocker] The actual Ruby implementation I myself wrote.
 
+Thanks also to the following for their help and suggestions:
+Dana Jones
+
 Copyright (c) 2008 Lucky Sneaks, released under the MIT license

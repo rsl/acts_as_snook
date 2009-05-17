@@ -29,11 +29,7 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
   
   def test_indicates_spam_status_of_comments_needing_moderation
     # This is a hard spot to hit!
-    @comment = Comment.new(
-      :author => "Mister Mxyzptlk",
-      :url => "http://superman.de",
-      :body => "I take viagra and cialis but I'm not selling it."
-    )
+    @comment = Comment.new(MODERATE_COMMENT)
     assert @comment.moderate?
   end
   
@@ -141,6 +137,16 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
     @comment.destroy
   end
   
+  def test_updating_moderate_spam_status_to_spam_does_not_decrement_ham_comments_count
+    @comment = Entry.find(:first).comments.create!(MODERATE_COMMENT)
+    @comment.save!
+    assert_no_difference("Entry.find(:first).ham_comments_count") do
+      @comment.spam_status = "spam"
+      @comment.save!
+    end
+    @comment.destroy
+  end
+  
   def test_destroying_ham_comment_decrements_ham_comment_count
     @comment = Entry.find(:first).comments.create!(HAM_COMMENTS[0])
     assert_difference "Entry.find(:first).ham_comments_count", -1 do
@@ -150,6 +156,13 @@ class ActsAsSnookInterfaceTest < Test::Unit::TestCase
   
   def test_destroying_spam_comment_does_not_decrement_ham_comment_count
     @comment = Entry.find(:first).comments.create!(SPAM_COMMENTS[2])
+    assert_no_difference "Entry.find(:first).ham_comments_count" do
+      @comment.destroy
+    end
+  end
+  
+  def test_destroying_moderate_comment_does_not_decrement_ham_comment_count
+    @comment = Entry.find(:first).comments.create!(MODERATE_COMMENT)
     assert_no_difference "Entry.find(:first).ham_comments_count" do
       @comment.destroy
     end

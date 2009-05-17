@@ -267,6 +267,10 @@ module LuckySneaks
       changes.has_key? self.class.fields_for_snooking[:spam_status_field].to_s
     end
     
+    def snook_spam_status_changes
+      changes[self.class.fields_for_snooking[:spam_status_field].to_s]
+    end
+    
     def increment_ham_comments_count
       if ham? && snook_entry
         snook_entry.increment!(self.class.fields_for_snooking[:ham_comments_count_field])
@@ -275,7 +279,11 @@ module LuckySneaks
     
     def adjust_ham_comments_count
       if snook_spam_status_changed?
-        ham? ? increment_ham_comments_count : decrement_ham_comments_count
+        if ham?
+          increment_ham_comments_count
+        elsif snook_spam_status_changes == ["ham", "spam"]
+          decrement_ham_comments_count
+        end
       end
     end
     
