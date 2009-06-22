@@ -22,7 +22,7 @@ module LuckySneaks
       # 
       # * <tt>:comment_belongs_to</tt> - Symbol or string specifying the association that the comment has a <tt>:belongs_to</tt> relationship with.
       # * <tt>:ham_comments_count_field</tt> - Symbol or string specifying an alternate database field to use for the ham_comments_count attribute. Default: +ham_comments_count+
-      def acts_as_snook(options = {})
+      def acts_as_snook(options = {}, &block)
         cattr_accessor :spam_words
         self.spam_words = %w{
           -online 4u 4-u acne adipex advicer baccarrat blackjack bllogspot booker buy byob carisoprodol
@@ -59,6 +59,11 @@ module LuckySneaks
           after_create :increment_ham_comments_count
           after_update :adjust_ham_comments_count
           after_destroy :decrement_ham_comments_count
+        end
+        
+        cattr_accessor :custom_callbacks_for_snooking
+        if block_given?
+          self.custom_callbacks_for_snooking = block
         end
         
         attr_reader :snook_credits
@@ -186,6 +191,12 @@ module LuckySneaks
       deduct_snook_credits(1 * snook_body.scan(/\[(url|img)/i).size)
     end
     
+    def calculate_snook_for_custom_rules
+      if custom_callbacks_for_snooking
+        instance_eval &custom_callbacks_for_snooking
+      end
+    end
+    
     def calculate_snook_score
       @snook_credits = 0
       calculate_snook_for_body_links
@@ -199,6 +210,8 @@ module LuckySneaks
       calculate_snook_for_author_link
       calculate_snook_for_matching_previous_body
       calculate_snook_for_consonant_runs
+      calculate_snook_for_bbcode
+      calculate_snook_for_custom_rules
       status = if @snook_credits > 0
         "ham"
       elsif @snook_credits == 0
@@ -206,8 +219,16 @@ module LuckySneaks
       else
         "spam"
       end
+      status = @forced_snook_status || status
       self.send("#{self.class.fields_for_snooking[:spam_status_field]}=", status)
+      @forced_snook_status = nil
+      # Dont save if snook_credits under -10
       snook_credits >= -10
+    end
+    
+    def force_snook_status(value)
+      raise ArgumentError, "force_snook_status called without block" unless block_given?
+      @forced_snook_status = value.to_s if yield
     end
     
     def snook_author
@@ -231,11 +252,13 @@ module LuckySneaks
     end
     
     def add_snook_credits(addition)
-      @snook_credits = @snook_credits + addition
+      return if block_given? && !yield
+      @snook_credits += addition
     end
     
     def deduct_snook_credits(deduction)
-      @snook_credits = @snook_credits - deduction
+      return if block_given? && !yield
+      @snook_credits -= deduction
     end
     
     def previous_comment_count_for_snook_author(spam_value)

@@ -16,10 +16,9 @@ end
 
 ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => "acts_as_url.sqlite3")
 
-require File.join(File.dirname(__FILE__), '../init')
-require File.join(File.dirname(__FILE__), 'schema')
-require File.join(File.dirname(__FILE__), 'comment')
-require File.join(File.dirname(__FILE__), 'entry')
+%w{../init schema comment entry extended_comment}.each do |foo|
+  require File.join(File.dirname(__FILE__), foo)
+end
 
 Entry.create!(:title => "The Tale of Flight 815")
 
