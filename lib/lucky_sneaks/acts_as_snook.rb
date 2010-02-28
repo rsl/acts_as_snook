@@ -86,6 +86,18 @@ module LuckySneaks
       def moderate(options = {})
         find :all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "moderate"})
       end
+      
+      def ham_count(options = {})
+        count(:all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "ham"}))
+      end
+      
+      def spam_count(options = {})
+        count(:all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "spam"}))
+      end
+      
+      def moderate_count(options = {})
+        count(:all, options.merge(:conditions => {fields_for_snooking[:spam_status_field] => "moderate"}))
+      end
     end
     
     # Returns true if marked as spam, false otherwise
