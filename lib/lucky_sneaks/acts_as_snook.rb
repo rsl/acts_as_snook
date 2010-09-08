@@ -1,3 +1,6 @@
+require 'bundler'
+Bundler.require(:default)
+
 module LuckySneaks
   module ActsAsSnook
     def self.included(base) # :nodoc:
@@ -49,7 +52,7 @@ module LuckySneaks
           :spam_status_field        => :spam_status
         }.merge(options)
         
-        before_validation_on_create :calculate_snook_score
+        before_validation :calculate_snook_score, :on => :create
         
         if fields_for_snooking[:comment_belongs_to].nil? && reflect_on_all_associations(:belongs_to).size == 1
           fields_for_snooking[:comment_belongs_to] = reflect_on_all_associations(:belongs_to).first.name
