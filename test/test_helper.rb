@@ -14,7 +14,7 @@ rescue LoadError
   RAILS_ROOT = File.dirname(__FILE__) 
 end
 
-ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :dbfile => "acts_as_url.sqlite3")
+ActiveRecord::Base.establish_connection(:adapter => "sqlite3", :database => "acts_as_url.sqlite3")
 
 %w{../init schema comment entry extended_comment}.each do |foo|
   require File.join(File.dirname(__FILE__), foo)
